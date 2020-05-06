@@ -17,6 +17,7 @@ chmod u+x shipper.sh
 firebase login --no-localhost
 ```
 > During this you can use the url returned by your terminal on your browser, get the token and use it here.
+
 > If it's ask any questions during the process please hit an enter to choose default answer.
 
 ##### Run the following quoted commands on your terminal to install naanal portal app. (Give sudo password of your server if it’s ask)
