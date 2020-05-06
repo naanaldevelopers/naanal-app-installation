@@ -12,13 +12,17 @@ wget -q -N https://gist.githubusercontent.com/naanaldevelopers/146eb28bf402018f8
 chmod u+x shipper.sh
 ./shipper.sh
 ```
-##### Run the following quoted commands on your terminal to install naanal portal app. (Give sudo password of your server if it’s ask)
-> During this process it will ask you to login in to the firebase you can use the url returned by your terminal on your browser, get the token and use it here.
-
+##### Run the following quoted commands to setting up firebase for host an app.
+```
+firebase login --no-localhost
+```
+> During this you can use the url returned by your terminal on your browser, get the token and use it here.
 > If it's ask any questions during the process please hit an enter to choose default answer.
+
+##### Run the following quoted commands on your terminal to install naanal portal app. (Give sudo password of your server if it’s ask)
 ```
 cd ~
-wget -q -N https://gist.githubusercontent.com/naanaldevelopers/bc45a10c44e507f92ff50df7936aa5c0/raw/0d84a3ee57a566dbaa9c3dd2daa6a560e6788fcc/portal.sh
+wget -q -N https://gist.githubusercontent.com/naanaldevelopers/bc45a10c44e507f92ff50df7936aa5c0/raw/91b7ac78386b354c2972c0ab0cf18a21af0886bd/portal.sh
 chmod u+x portal.sh
 ./portal.sh
 ```
