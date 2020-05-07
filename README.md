@@ -23,7 +23,7 @@ firebase login --no-localhost
 ##### Run the following quoted commands on your terminal to install naanal portal app. (Give sudo password of your server if it’s ask)
 ```
 cd ~
-wget -q -N https://gist.githubusercontent.com/naanaldevelopers/bc45a10c44e507f92ff50df7936aa5c0/raw/7321d5d7acb135397bec3342b6a16b90c5cecafe/portal.sh
+wget -q -N https://gist.githubusercontent.com/naanaldevelopers/bc45a10c44e507f92ff50df7936aa5c0/raw/b8b422e2731b80a71f301a467828d0e11caea4aa/portal.sh
 chmod u+x portal.sh
 ./portal.sh
 ```
