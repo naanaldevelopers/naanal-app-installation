@@ -34,6 +34,7 @@ export NODE_OPTIONS=--max-old-space-size=4096
 yarn run build
 echo "Production build success"
 #Hosting project in firebase.
+tput setaf 3; firebase login --no-localhost
 firebase use $FIREBASE_PROJECT_ID
 firebase deploy
 echo "Visit Hosting URL to reach app."
