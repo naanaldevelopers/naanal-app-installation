@@ -30,12 +30,10 @@ echo "Installation of app dependencies was done."
 echo VUE_APP_API=https://%API_DOMAIN% >> .env
 sed -i "s|%API_DOMAIN%|$API_DOMAIN|"g $APP_DIRECTORY/.env
 #Building an app for production
-echo "Building an app for production"
 export NODE_OPTIONS=--max-old-space-size=4096
 yarn run build
 echo "Production build success"
 #Hosting project in firebase.
-firebase projects:create $FIREBASE_PROJECT
-firebase use $FIREBASE_PROJECT
+firebase use $FIREBASE_PROJECT_ID
 firebase deploy
-echo "Visit Hosting URL to reach our portal app."
+echo "Visit Hosting URL to reach app."
