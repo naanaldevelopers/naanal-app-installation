@@ -1,5 +1,13 @@
 **README**
-
+##### Follow the steps to create firebase project.
+```
+1. Go to https://console.firebase.google.com/
+2. Sign in with your mail
+3. Locate and click 'Add Project'
+3. Enter your desired project name, in below of the project name you entered you will find unique id of the project use this id in helpers.env
+4. Disable Google Analytics in next step.
+5. Done.
+```
 ##### Download helpers.env by running the following commands and edit with appropriate details using any one of the text editor.
 ```
 cd ~
@@ -13,10 +21,10 @@ chmod u+x shipper.sh
 ./shipper.sh
 ```
 ##### Run the following quoted commands on your terminal to install naanal portal app. (Give sudo password of your server if it’s ask)
+> During this process firebase asking you to login. you can use the url returned by your terminal on any browser, get the token and use it here.(Highlighted on yellow). Make sure you are using same login used to create a firebase project.
 ```
 cd ~
 wget -q -N https://raw.githubusercontent.com/naanaldevelopers/naanal-app-installation/master/portal.sh
 chmod u+x portal.sh
 ./portal.sh
 ```
-> During this process firebase asking you to login. you can use the url returned by your terminal on any browser, get the token and use it here.(Highlighted on yellow). Make sure you are using same login used to create a firebase project.
