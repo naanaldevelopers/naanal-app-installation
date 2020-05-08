@@ -31,7 +31,7 @@ echo VUE_APP_API=https://%API_DOMAIN% >> .env
 sed -i "s|%API_DOMAIN%|$API_DOMAIN|"g $APP_DIRECTORY/.env
 #Building an app for production
 export NODE_OPTIONS=--max-old-space-size=4096
-yarn run build
+yarn run build 1>dev/null
 echo "Production build success"
 #Hosting project in firebase.
 tput setaf 3; firebase login --no-localhost
