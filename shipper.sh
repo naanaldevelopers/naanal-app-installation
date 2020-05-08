@@ -66,13 +66,13 @@ echo "Configuration of celery beat in supervisor was done."
 
 #Configuration of scrapyd in supervisor
 echo "Configuring scrapyd in supervisor..."
-sudo curl -sS -o /etc/supervisor/conf.d/scrapyd.conf https://gist.githubusercontent.com/naanaldevelopers/3bc161c9619e668279d839192a44d9c5/raw/6e4553159633708173a532083e0586b17d7606f5/scrapyd.conf
-sudo sed -i "s|%APP_DIRECTORY%|$APP_DIRECTORY|"g /etc/supervisor/conf.d/scrapyd.conf
+sudo curl -sS -o /etc/supervisor/conf.d/naanal_scraping.conf https://raw.githubusercontent.com/naanaldevelopers/naanal-app-installation/master/config-file-templates/supervisor/naanal_scraping.conf
+sudo sed -i "s|%APP_DIRECTORY%|$APP_DIRECTORY|"g /etc/supervisor/conf.d/naanal_scraping.conf
 echo "Configuration of scrapyd in supervisor was done."
 
 #Configuration of gunicorn for shipper in shell script
 echo "Configuring gunicorn for shipper in shell script..."
-curl -sS -o $APP_DIRECTORY/Misc/gunicorn-conf.sh https://raw.githubusercontent.com/naanaldevelopers/naanal-app-installation/master/config-script-templates/gunicorn/run-shipper.sh
+curl -sS -o $APP_DIRECTORY/Misc/run-shipper.sh https://raw.githubusercontent.com/naanaldevelopers/naanal-app-installation/master/config-script-templates/gunicorn/run-shipper.sh
 sed -i "s|%APP_DIRECTORY%|$APP_DIRECTORY|"g $APP_DIRECTORY/Misc/run-shipper.sh
 sed -i "s|%USER%|$USER|"g $APP_DIRECTORY/Misc/run-shipper.sh
 sed -i "s|%USER_GROUP%|$USER_GROUP|"g $APP_DIRECTORY/Misc/run-shipper.sh
