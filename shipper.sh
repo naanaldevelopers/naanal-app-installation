@@ -43,14 +43,14 @@ deactivate
 
 #Configuration of celery default queue in supervisor
 echo "Configuring celery default queue in supervisor..."
-sudo curl -sS -o /etc/supervisor/conf.d/celery_default_queue.conf https://gist.githubusercontent.com/naanaldevelopers/a99e4286de68e931746f58d314b7acc1/raw/e5b65d0aeae6c219e1925894241514828584e75d/celery_default_queue.conf
+sudo curl -sS -o /etc/supervisor/conf.d/celery_default_queue.conf https://raw.githubusercontent.com/naanaldevelopers/naanal-app-installation/master/config-file-templates/supervisor/celery_default_queue.conf
 sudo sed -i "s|%APP_DIRECTORY%|$APP_DIRECTORY|"g /etc/supervisor/conf.d/celery_default_queue.conf
 sudo sed -i "s|%USER%|$USER|"g /etc/supervisor/conf.d/celery_default_queue.conf 
 echo "Configuration of celery default queue was done."
 
 #Configuration of celery priority queue in supervisor
 echo "Configuring celery priority queue in supervisor..."
-sudo curl -sS -o /etc/supervisor/conf.d/celery_priority.queue.conf https://gist.githubusercontent.com/naanaldevelopers/4b59c14086fc9f10119349454b4bbb1f/raw/267ec5fcd420e77d325e348100bc5a19a43c4890/celery_priority.queue.conf
+sudo curl -sS -o /etc/supervisor/conf.d/celery_priority.queue.conf https://raw.githubusercontent.com/naanaldevelopers/naanal-app-installation/master/config-file-templates/supervisor/celery_priority.queue.conf
 sudo sed -i "s|%APP_DIRECTORY%|$APP_DIRECTORY|"g /etc/supervisor/conf.d/celery_priority.queue.conf
 sudo sed -i "s|%USER%|$USER|"g /etc/supervisor/conf.d/celery_priority.queue.conf
 sudo mkdir -p /var/log/celery
@@ -59,7 +59,7 @@ echo "Configuration of celery priority queue in supervisor was done."
 
 #Configuration of celery beat in supervisor
 echo "Configuring celery beat in supervisor..."
-sudo curl -sS -o /etc/supervisor/conf.d/celery_beat.conf https://gist.githubusercontent.com/naanaldevelopers/1b4530a261cb55af3bedf0011df9d721/raw/534d2c5af4b5aaaa1ba368c21881733bca877b39/celery_beat.conf
+sudo curl -sS -o /etc/supervisor/conf.d/celery_beat.conf https://raw.githubusercontent.com/naanaldevelopers/naanal-app-installation/master/config-file-templates/supervisor/celery_beat.conf
 sudo sed -i "s|%APP_DIRECTORY%|$APP_DIRECTORY|"g /etc/supervisor/conf.d/celery_beat.conf
 sudo sed -i "s|%USER%|$USER|"g /etc/supervisor/conf.d/celery_beat.conf
 echo "Configuration of celery beat in supervisor was done."
@@ -72,25 +72,25 @@ echo "Configuration of scrapyd in supervisor was done."
 
 #Configuration of gunicorn for shipper in shell script
 echo "Configuring gunicorn for shipper in shell script..."
-curl -sS -o $APP_DIRECTORY/Misc/gunicorn-conf.sh https://gist.githubusercontent.com/naanaldevelopers/2ff8337d92954f4f79a8fb3c8e8c2d6b/raw/7411886d48dcc8c5922d98eb2c4c552ca95173f0/gunicorn-conf.sh
-sed -i "s|%APP_DIRECTORY%|$APP_DIRECTORY|"g $APP_DIRECTORY/Misc/gunicorn-conf.sh
-sed -i "s|%USER%|$USER|"g $APP_DIRECTORY/Misc/gunicorn-conf.sh
-sed -i "s|%USER_GROUP%|$USER_GROUP|"g $APP_DIRECTORY/Misc/gunicorn-conf.sh
-chmod u+x Misc/gunicorn-conf.sh
+curl -sS -o $APP_DIRECTORY/Misc/gunicorn-conf.sh https://raw.githubusercontent.com/naanaldevelopers/naanal-app-installation/master/config-script-templates/gunicorn/run-shipper.sh
+sed -i "s|%APP_DIRECTORY%|$APP_DIRECTORY|"g $APP_DIRECTORY/Misc/run-shipper.sh
+sed -i "s|%USER%|$USER|"g $APP_DIRECTORY/Misc/run-shipper.sh
+sed -i "s|%USER_GROUP%|$USER_GROUP|"g $APP_DIRECTORY/Misc/run-shipper.sh
+chmod u+x Misc/run-shipper.sh
 sudo mkdir -p /var/log/shipper
 sudo chown -R $USER /var/log/shipper
 echo "Configuration of gunicorn for shipper in shell script was done."
 
 #Configuration of shipper app in supervisor
 echo "Configuring shipper app in supervisor..."
-sudo curl -sS -o /etc/supervisor/conf.d/shipper.conf https://gist.githubusercontent.com/naanaldevelopers/6f9bd6643212978e91d564a909541792/raw/3eb9fcde8ac02a1b13e8cb336910a15760b3aa8b/shipper_app.conf
+sudo curl -sS -o /etc/supervisor/conf.d/shipper.conf hhttps://raw.githubusercontent.com/naanaldevelopers/naanal-app-installation/master/config-file-templates/supervisor/shipper.conf
 sudo sed -i "s|%APP_DIRECTORY%|$APP_DIRECTORY|"g /etc/supervisor/conf.d/shipper.conf
 sudo sed -i "s|%USER%|$USER|"g /etc/supervisor/conf.d/shipper.conf
 echo "Configuration of shipper app in supervisor was done."
 
 #Configuration of nginx for shipper app
 echo "Configuring nginx for shipper app..."
-sudo curl -sS -o /etc/nginx/sites-available/shipper.conf https://gist.githubusercontent.com/naanaldevelopers/10e7f03c9b47fca33ad4485e75ff5f6c/raw/52a55442cd11a9b97d9d7467255a36fb8461096b/shipper.conf
+sudo curl -sS -o /etc/nginx/sites-available/shipper.conf https://raw.githubusercontent.com/naanaldevelopers/naanal-app-installation/master/config-file-templates/nginx/shipper.conf
 sudo sed -i "s|%APP_DIRECTORY%|$APP_DIRECTORY|"g /etc/nginx/sites-available/shipper.conf
 sudo sed -i "s|%API_DOMAIN%|$API_DOMAIN|"g /etc/nginx/sites-available/shipper.conf
 sudo ln -s /etc/nginx/sites-available/shipper.conf /etc/nginx/sites-enabled/shipper.conf
@@ -98,7 +98,7 @@ echo "Configuration of nginx for shipper app was done."
 
 #Configuration of environment variable for shipper app
 echo "Configuring environment variables for shipper app..."
-wget -q -N https://gist.githubusercontent.com/naanaldevelopers/1a4fcc3c9e387d4b6d4a27a537d348eb/raw/d7fdf088fc92b1f4a5182735455992788666d1c3/.env
+wget -q -N https://raw.githubusercontent.com/naanaldevelopers/naanal-app-installation/master/.env-template-for-shipper/.env
 sed -i "s|%DB_USER%|$DB_USER|"g $APP_DIRECTORY/.env
 sed -i "s|%DB_PASSWORD%|$DB_PASSWORD|"g $APP_DIRECTORY/.env
 sed -i "s|%DB_HOST%|$DB_HOST|"g $APP_DIRECTORY/.env
