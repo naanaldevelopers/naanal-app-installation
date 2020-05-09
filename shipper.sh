@@ -29,10 +29,14 @@ sudo add-apt-repository -y ppa:deadsnakes/ppa >/dev/null 2>&1
 sudo apt-get -y update 1>/dev/null
 #installation of system dependencies
 sudo apt-get install -q -y $(awk '{print $1'} system_packages.txt) 1>/dev/null
-wget -q https://github.com/wkhtmltopdf/wkhtmltopdf/releases/download/0.12.3/wkhtmltox-0.12.3_linux-generic-amd64.tar.xz 
+wget -q -N https://github.com/wkhtmltopdf/wkhtmltopdf/releases/download/0.12.3/wkhtmltox-0.12.3_linux-generic-amd64.tar.xz 
 tar xf wkhtmltox-0.12.3_linux-generic-amd64.tar.xz
 sudo mv wkhtmltox/bin/wkhtmlto* /usr/bin/
 rm -r wkhtmltox/ 
+wget -q -N https://github.com/adnanh/webhook/releases/download/2.6.6/webhook-linux-amd64.tar.gz
+tar -xf webhook-linux-amd64.tar.gz
+sudo mv webhook-linux-amd64/webhook /usr/local/bin
+rm -rf webhook-linux-amd64*
 echo "Installation of system dependencies was done."
 echo "Installing shipper app dependencies..."
 virtualenv venv --python=python3.6 1>/dev/null
