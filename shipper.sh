@@ -87,10 +87,16 @@ echo "Configuration of gunicorn for shipper in shell script was done."
 
 #Configuration of shipper app in supervisor
 echo "Configuring shipper app in supervisor..."
-sudo curl -sS -o /etc/supervisor/conf.d/shipper.conf hhttps://raw.githubusercontent.com/naanaldevelopers/naanal-app-installation/master/config-file-templates/supervisor/shipper.conf
+sudo curl -sS -o /etc/supervisor/conf.d/shipper.conf https://raw.githubusercontent.com/naanaldevelopers/naanal-app-installation/master/config-file-templates/supervisor/shipper.conf
 sudo sed -i "s|%APP_DIRECTORY%|$APP_DIRECTORY|"g /etc/supervisor/conf.d/shipper.conf
 sudo sed -i "s|%USER%|$USER|"g /etc/supervisor/conf.d/shipper.conf
 echo "Configuration of shipper app in supervisor was done."
+
+#Configuration of webhook
+echo "Configuring of webhook..."
+sudo curl -sS -o /etc/supervisor/conf.d/webhook.conf https://raw.githubusercontent.com/naanaldevelopers/naanal-app-installation/master/config-file-templates/supervisor/webhook.conf
+sudo sed -i "s|%APP_DIRECTORY%|$APP_DIRECTORY|"g /etc/supervisor/conf.d/webhook.conf
+echo "Configuration of webhook was done."
 
 #Configuration of nginx for shipper app
 echo "Configuring nginx for shipper app..."
