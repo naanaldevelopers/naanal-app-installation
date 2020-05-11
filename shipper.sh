@@ -70,8 +70,8 @@ echo "Configuration of celery beat in supervisor was done."
 
 #Configuration of scrapyd in supervisor
 echo "Configuring scrapyd in supervisor..."
-sudo curl -sS -o /etc/supervisor/conf.d/naanal_scraping.conf https://raw.githubusercontent.com/naanaldevelopers/naanal-app-installation/master/config-file-templates/supervisor/naanal_scraping.conf
-sudo sed -i "s|%APP_DIRECTORY%|$APP_DIRECTORY|"g /etc/supervisor/conf.d/naanal_scraping.conf
+sudo curl -sS -o /etc/supervisor/conf.d/shipper_scraping.conf https://raw.githubusercontent.com/naanaldevelopers/naanal-app-installation/master/config-file-templates/supervisor/shipper_scraping.conf
+sudo sed -i "s|%APP_DIRECTORY%|$APP_DIRECTORY|"g /etc/supervisor/conf.d/shipper_scraping.conf
 echo "Configuration of scrapyd in supervisor was done."
 
 #Configuration of gunicorn for shipper in shell script
@@ -94,8 +94,8 @@ echo "Configuration of shipper app in supervisor was done."
 
 #Configuration of webhook
 echo "Configuring of webhook..."
-sudo curl -sS -o /etc/supervisor/conf.d/webhook.conf https://raw.githubusercontent.com/naanaldevelopers/naanal-app-installation/master/config-file-templates/supervisor/webhook.conf
-sudo sed -i "s|%APP_DIRECTORY%|$APP_DIRECTORY|"g /etc/supervisor/conf.d/webhook.conf
+sudo curl -sS -o /etc/supervisor/conf.d/shipper_webhook.conf https://raw.githubusercontent.com/naanaldevelopers/naanal-app-installation/master/config-file-templates/supervisor/shipper_webhook.conf
+sudo sed -i "s|%APP_DIRECTORY%|$APP_DIRECTORY|"g /etc/supervisor/conf.d/shipper_webhook.conf
 echo "Configuration of webhook was done."
 
 #Configuration of nginx for shipper app
