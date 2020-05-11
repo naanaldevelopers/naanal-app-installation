@@ -14,7 +14,6 @@ git clone -q https://$GIT_ACCESS_NAME:$GIT_ACCESS_TOKEN@gitlab.com/naanal/scm/po
 cd portal
 APP_DIRECTORY=$(eval pwd)
 
-
 echo "Installing system dependencies..."
 #Installation of needed system packages for an app.
 curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash - 1>/dev/null
