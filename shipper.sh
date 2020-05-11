@@ -109,6 +109,8 @@ echo "Configuration of nginx for shipper app was done."
 #Configuration of environment variable for shipper app
 echo "Configuring environment variables for shipper app..."
 wget -q -N https://raw.githubusercontent.com/naanaldevelopers/naanal-app-installation/master/.env-template-for-shipper/.env
+sed -i "s|%GIT_ACCESS_NAME%|$GIT_ACCESS_NAME|"g $APP_DIRECTORY/.env
+sed -i "s|%GIT_ACCESS_TOKEN%|$GIT_ACCESS_TOKEN|"g $APP_DIRECTORY/.env
 sed -i "s|%DB_USER%|$DB_USER|"g $APP_DIRECTORY/.env
 sed -i "s|%DB_PASSWORD%|$DB_PASSWORD|"g $APP_DIRECTORY/.env
 sed -i "s|%DB_HOST%|$DB_HOST|"g $APP_DIRECTORY/.env
