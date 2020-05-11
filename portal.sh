@@ -29,6 +29,10 @@ echo "Installation of app dependencies was done."
 #Creating .env file with appropriate details.
 echo VUE_APP_API=https://%API_DOMAIN% >> .env
 sed -i "s|%API_DOMAIN%|$API_DOMAIN|"g $APP_DIRECTORY/.env
+curl -sS -o Misc/portal_firebase_deploy.sh https://raw.githubusercontent.com/naanaldevelopers/naanal-app-installation/master/config-script-templates/feature-deployment/portal_firebase_deploy.sh
+chmod u+c Misc/portal_firebase_deploy.sh
+sed -i "s|%GIT_ACCESS_NAME%|$GIT_ACCESS_NAME|"g Misc/portal_firebase_deploy.sh
+sed -i "s|%GIT_ACCESS_TOKEN%|$GIT_ACCESS_TOKEN|"g Misc/portal_firebase_deploy.sh
 #Building an app for production
 export NODE_OPTIONS=--max-old-space-size=4096
 yarn run build 1>dev/null
