@@ -101,7 +101,7 @@ echo "Configuration of webhook was done."
 #Incremental deployment
 curl -sS -o Misc/run_deploy.sh https://raw.githubusercontent.com/naanaldevelopers/naanal-app-installation/master/config-script-templates/run_deploy.sh
 chmod u+x Misc/run_deploy.sh
-sed -i "s|%APP_DIRECTORY%|$APP_DIRECTORY|"g Misc/run_deploy.sh
+sed -i "s|%APP_DIRECTORY%|$APP_DIRECTORY|"g Misc/run_shipper_deploy.sh
 mkdir -p $USER_HOME/webhooks
 curl -sS -o $USER_HOME/webhooks/run_shipper_deploy.json https://raw.githubusercontent.com/naanaldevelopers/naanal-app-installation/master/webhooks/run_shipper_deploy.json
 sed -i "s|%APP_DIRECTORY%|$APP_DIRECTORY|"g $USER_HOME/webhooks/run_shipper_deploy.json
