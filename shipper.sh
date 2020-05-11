@@ -80,7 +80,7 @@ curl -sS -o $APP_DIRECTORY/Misc/run-shipper.sh https://raw.githubusercontent.com
 sed -i "s|%APP_DIRECTORY%|$APP_DIRECTORY|"g $APP_DIRECTORY/Misc/run-shipper.sh
 sed -i "s|%USER%|$USER|"g $APP_DIRECTORY/Misc/run-shipper.sh
 sed -i "s|%USER_GROUP%|$USER_GROUP|"g $APP_DIRECTORY/Misc/run-shipper.sh
-chmod u+x Misc/run_shipper_deploy.sh
+chmod u+x Misc/run-shipper.sh
 sudo mkdir -p /var/log/shipper
 sudo chown -R $USER /var/log/shipper
 echo "Configuration of gunicorn for shipper in shell script was done."
@@ -100,7 +100,7 @@ echo "Configuration of webhook was done."
 
 #Incremental deployment
 curl -sS -o Misc/run_shipper_deploy.sh https://raw.githubusercontent.com/naanaldevelopers/naanal-app-installation/master/config-script-templates/feature-deployment/run_shipper_deploy.sh
-chmod u+x Misc/run_deploy.sh
+chmod u+x Misc/run_shipper_deploy.sh
 sed -i "s|%APP_DIRECTORY%|$APP_DIRECTORY|"g Misc/run_shipper_deploy.sh
 sed -i "s|%GIT_ACCESS_NAME%|$GIT_ACCESS_NAME|"g Misc/run_shipper_deploy.sh
 sed -i "s|%GIT_ACCESS_TOKEN%|$APP_DIRECTORY|"g Misc/run_shipper_deploy.sh
