@@ -39,6 +39,7 @@ sed -i "s|%API_DOMAIN%|$API_DOMAIN|"g $APP_DIRECTORY/.env
 #Incremental deploy
 curl -sS -o Misc/portal_firebase_deploy.sh https://raw.githubusercontent.com/naanaldevelopers/naanal-app-installation/master/config-script-templates/feature-deployment/portal_firebase_deploy.sh
 chmod u+x Misc/portal_firebase_deploy.sh
+sed -i "s|%APP_DIRECTORY%|$APP_DIRECTORY|"g Misc/portal_firebase_deploy.sh
 sed -i "s|%GIT_ACCESS_NAME%|$GIT_ACCESS_NAME|"g Misc/portal_firebase_deploy.sh
 sed -i "s|%GIT_ACCESS_TOKEN%|$GIT_ACCESS_TOKEN|"g Misc/portal_firebase_deploy.sh
 mkdir -p $USER_HOME/webhooks
@@ -46,12 +47,12 @@ curl -sS -o $USER_HOME/webhooks/portal_firebase_deploy.json https://raw.githubus
 sed -i "s|%APP_DIRECTORY%|$APP_DIRECTORY|"g $USER_HOME/webhooks/portal_firebase_deploy.json
 
 #Building an app for production
+echo "Building an app for production..."
 export NODE_OPTIONS=--max-old-space-size=4096
-yarn run build --silent
-echo "Production build success"
+yarn run build dev/null 2>&1
+echo "Production build success."
 
 #Hosting project in firebase.
-tput setaf 3; firebase login --no-localhost
 firebase use $FIREBASE_PROJECT_ID
 firebase deploy
 echo "Visit Hosting URL to reach app."
