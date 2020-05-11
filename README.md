@@ -6,7 +6,7 @@
 >3. Enter your desired project name, in below of the project name you entered you will find unique id of the project use this id in helpers.env
 >4. Disable Google Analytics in next step.
 >5. Next -> Create Project -> Done.
-```
+
 ##### Download helpers.env by running the following commands and edit with appropriate details using any one of the text editor.
 ```
 cd ~
