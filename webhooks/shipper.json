@@ -1,0 +1,7 @@
+[
+  {
+    "id": "run-shipper-deploy",
+    "execute-command": "%APP_DIRECTORY%/Misc/run_shipper_deploy.sh",
+    "command-working-directory": "%APP_DIRECTORY%"
+  }
+]

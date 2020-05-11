@@ -1,0 +1,7 @@
+[
+  {
+    "id": "portal-firebase-deploy",
+    "execute-command": "%APP_DIRECTORY%/Misc/portal_firebase_deploy.sh",
+    "command-working-directory": "%APP_DIRECTORY%"
+  }
+]
