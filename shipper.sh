@@ -94,15 +94,17 @@ echo "Configuration of shipper app in supervisor was done."
 
 #Configuration of webhook
 echo "Configuring of webhook..."
-sudo curl -sS -o /etc/supervisor/conf.d/shipper_webhook.conf https://raw.githubusercontent.com/naanaldevelopers/naanal-app-installation/master/config-file-templates/supervisor/shipper_webhook.conf
-sudo sed -i "s|%APP_DIRECTORY%|$APP_DIRECTORY|"g /etc/supervisor/conf.d/shipper_webhook.conf
+sudo curl -sS -o /etc/supervisor/conf.d/webhooks.conf https://raw.githubusercontent.com/naanaldevelopers/naanal-app-installation/master/config-file-templates/supervisor/webhooks.conf
+sudo sed -i "s|%USER_HOME%|$USER_HOME|"g /etc/supervisor/conf.d/webhooks.conf
 echo "Configuration of webhook was done."
 
 #Incremental deployment
 curl -sS -o Misc/run_deploy.sh https://raw.githubusercontent.com/naanaldevelopers/naanal-app-installation/master/config-script-templates/run_deploy.sh
 chmod u+x Misc/run_deploy.sh
 sed -i "s|%APP_DIRECTORY%|$APP_DIRECTORY|"g Misc/run_deploy.sh
-sed -i "s|%APP_DIRECTORY%|$APP_DIRECTORY|"g Misc/hook.json
+mkdir -p $USER_HOME/webhooks
+curl -sS -o $USER_HOME/webhooks/run_shipper_deploy.json https://raw.githubusercontent.com/naanaldevelopers/naanal-app-installation/master/webhooks/run_shipper_deploy.json
+sed -i "s|%APP_DIRECTORY%|$APP_DIRECTORY|"g $USER_HOME/webhooks/run_shipper_deploy.json
 
 #Configuration of nginx for shipper app
 echo "Configuring nginx for shipper app..."
