@@ -32,8 +32,6 @@ echo "Installation of app dependencies was done."
 
 #Creating .env file with appropriate details.
 echo VUE_APP_API=https://%API_DOMAIN% >> .env
-echo GIT_ACCESS_NAME=$GIT_ACCESS_NAME >> .env
-echo GIT_ACCESS_TOKEN=$GIT_ACCESS_TOKEN >> .env
 sed -i "s|%API_DOMAIN%|$API_DOMAIN|"g $APP_DIRECTORY/.env
 
 #Incremental deploy
