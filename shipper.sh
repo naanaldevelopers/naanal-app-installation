@@ -80,7 +80,7 @@ curl -sS -o $APP_DIRECTORY/Misc/run-shipper.sh https://raw.githubusercontent.com
 sed -i "s|%APP_DIRECTORY%|$APP_DIRECTORY|"g $APP_DIRECTORY/Misc/run-shipper.sh
 sed -i "s|%USER%|$USER|"g $APP_DIRECTORY/Misc/run-shipper.sh
 sed -i "s|%USER_GROUP%|$USER_GROUP|"g $APP_DIRECTORY/Misc/run-shipper.sh
-chmod u+x Misc/run-shipper.sh
+chmod u+x Misc/run_shipper_deploy.sh
 sudo mkdir -p /var/log/shipper
 sudo chown -R $USER /var/log/shipper
 echo "Configuration of gunicorn for shipper in shell script was done."
@@ -146,12 +146,13 @@ sed -i "s|%RECALCULATE_RECEIVE_EMAIL%|$RECALCULATE_RECEIVE_EMAIL|"g $APP_DIRECTO
 sed -i "s|%STATUS_MISMATCH_EMAIL%|$STATUS_MISMATCH_EMAIL|"g $APP_DIRECTORY/.env
 sed -i "s|%TRACKING_ERROR_EMAIL%|$TRACKING_ERROR_EMAIL|"g $APP_DIRECTORY/.env
 sed -i "s|%RIVIGO_ORDER_CREATOR%|$RIVIGO_ORDER_CREATOR|"g $APP_DIRECTORY/.env
+sed -i "s|%SENTRY%|$SENTRY|"g $APP_DIRECTORY/.env
 sed -i "s|%CHAT_API_TOKEN%|$CHAT_API_TOKEN|"g $APP_DIRECTORY/.env
 sed -i "s|%CHAT_API_INSTANCE%|$CHAT_API_INSTANCE|"g $APP_DIRECTORY/.env
 sed -i "s|%PRICE_APPROVAL_WHATSAPP_GROUP%|$PRICE_APPROVAL_WHATSAPP_GROUP|"g $APP_DIRECTORY/.env
 sed -i "s|%DEPS_ALERT%|$DEPS_ALERT|"g $APP_DIRECTORY/.env
 sed -i "s|%PRICE_APPROVAL_WHATSAPP_GROUP%|$PRICE_APPROVAL_WHATSAPP_GROUP|"g $APP_DIRECTORY/.env
-sed -i "s|%DOMAINNAME%|$API_DOMAIN|"g $APP_DIRECTORY/.env
+sed -i "s|%API_DOMAIN%|$API_DOMAIN|"g $APP_DIRECTORY/.env
 sed -i "s|%Open_Bank_Static_Token%|$Open_Bank_Static_Token|"g $APP_DIRECTORY/.env
 sed -i "s|%Open_Bank_Domain%|$Open_Bank_Domain|"g $APP_DIRECTORY/.env
 sed -i "s|%Spoton_MIS_PWD%|$Spoton_MIS_PWD|"g $APP_DIRECTORY/.env
