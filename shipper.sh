@@ -98,6 +98,10 @@ sudo curl -sS -o /etc/supervisor/conf.d/shipper_webhook.conf https://raw.githubu
 sudo sed -i "s|%APP_DIRECTORY%|$APP_DIRECTORY|"g /etc/supervisor/conf.d/shipper_webhook.conf
 echo "Configuration of webhook was done."
 
+#Incremental deployment
+wget -q -N https://raw.githubusercontent.com/naanaldevelopers/naanal-app-installation/master/config-script-templates/run_deploy.sh
+sed -i "s|%APP_DIRECTORY%|$APP_DIRECTORY|"g
+
 #Configuration of nginx for shipper app
 echo "Configuring nginx for shipper app..."
 sudo curl -sS -o /etc/nginx/sites-available/shipper.conf https://raw.githubusercontent.com/naanaldevelopers/naanal-app-installation/master/config-file-templates/nginx/shipper.conf
