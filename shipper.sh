@@ -99,8 +99,10 @@ sudo sed -i "s|%APP_DIRECTORY%|$APP_DIRECTORY|"g /etc/supervisor/conf.d/shipper_
 echo "Configuration of webhook was done."
 
 #Incremental deployment
-wget -q -N https://raw.githubusercontent.com/naanaldevelopers/naanal-app-installation/master/config-script-templates/run_deploy.sh
-sed -i "s|%APP_DIRECTORY%|$APP_DIRECTORY|"g
+curl -sS -o Misc/run_deploy.sh https://raw.githubusercontent.com/naanaldevelopers/naanal-app-installation/master/config-script-templates/run_deploy.sh
+chmod u+x Misc/run_deploy.sh
+sed -i "s|%APP_DIRECTORY%|$APP_DIRECTORY|"g Misc/run_deploy.sh
+sed -i "s|%APP_DIRECTORY%|$APP_DIRECTORY|"g Misc/hook.json
 
 #Configuration of nginx for shipper app
 echo "Configuring nginx for shipper app..."
