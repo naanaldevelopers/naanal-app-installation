@@ -47,7 +47,7 @@ sed -i "s|%APP_DIRECTORY%|$APP_DIRECTORY|"g $USER_HOME/webhooks/portal_firebase_
 #Building an app for production
 echo "Building an app for production..."
 export NODE_OPTIONS=--max-old-space-size=4096
-yarn run build dev/null 2>&1
+yarn run build > dev/null 2>&1
 echo "Production build success."
 
 #Hosting project in firebase.
