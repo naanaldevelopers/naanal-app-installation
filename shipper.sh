@@ -159,7 +159,7 @@ sed -i "s|%Spoton_MIS_PWD%|$Spoton_MIS_PWD|"g $APP_DIRECTORY/.env
 sed -i "s|%AfterShip_Slug%|$AfterShip_Slug|"g $APP_DIRECTORY/.env
 
 
-echo -ne '[#########################](100%) Finalizing set-up.\r
+echo -ne '[#########################](100%) Finalizing set-up.\r'
 sudo supervisorctl reread 1>/dev/null
 sudo supervisorctl update 1>/dev/null
 sudo /etc/init.d/nginx restart 1>/dev/null
