@@ -6,14 +6,14 @@ USER_HOME=$(eval echo "~$USER")
 
 source helpers.env
 
-
+echo -ne '[.........................](%)\r'
 #initial server setup.
 sudo sed -i "s|deb cdrom|#deb cdrom|"g /etc/apt/sources.list
 sudo apt-get -y autoremove 1>/dev/null
 sudo apt-get -y autoclean 1>/dev/null
 sudo apt-get -y update 1>/dev/null
 
-
+echo -ne '[.........................](%)\r'
 #set-up rabbitmq-server apt repo.
 echo "deb https://dl.bintray.com/rabbitmq/debian xenial main" | sudo tee >/dev/null 2>&1
 wget -q -O- https://dl.bintray.com/rabbitmq/Keys/rabbitmq-release-signing-key.asc | sudo apt-key add - >/dev/null 2>&1
@@ -34,6 +34,7 @@ tar -xf webhook-linux-amd64.tar.gz
 sudo mv webhook-linux-amd64/webhook /usr/local/bin
 rm -rf webhook-linux-amd64*
 
+echo -ne '[.........................](#)\r'
 #cloning the project by git.
 git clone -q https://$GIT_ACCESS_NAME:$GIT_ACCESS_TOKEN@gitlab.com/naanal/shipping/shipper
 cd shipper
