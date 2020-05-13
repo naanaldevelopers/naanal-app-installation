@@ -7,6 +7,7 @@ USER_HOME=$(eval echo "~$USER")
 source helpers.env
 
 
+#initial server setup.
 sudo sed -i "s|deb cdrom|#deb cdrom|"g /etc/apt/sources.list
 sudo apt-get -y autoremove 1>/dev/null
 sudo apt-get -y autoclean 1>/dev/null
@@ -16,14 +17,14 @@ sudo apt-get -y update 1>/dev/null
 #
 echo "deb https://dl.bintray.com/rabbitmq/debian xenial main" | sudo tee >/dev/null 2>&1
 wget -q -O- https://dl.bintray.com/rabbitmq/Keys/rabbitmq-release-signing-key.asc | sudo apt-key add - >/dev/null 2>&1
-#
+#adding python3.6 repo.
 sudo add-apt-repository -y ppa:deadsnakes/ppa >/dev/null 2>&1
-#
+#updating the system.
 sudo apt-get -y update >/dev/null 2>&1
-#
+#installing system packages.
 wget -q -N https://raw.githubusercontent.com/naanaldevelopers/naanal-app-installation/master/system_packages.txt
-sudo apt-get install -q -y $(awk '{print $1'} system_packages.txt) 1>/dev/null
-#
+sudo apt-get install -q -y $(awk '{print $1'} system_packages.txt) >/dev/null 2>&1
+#wkhtmltopdf set-up
 wget -q -N https://github.com/wkhtmltopdf/wkhtmltopdf/releases/download/0.12.3/wkhtmltox-0.12.3_linux-generic-amd64.tar.xz 
 tar xf wkhtmltox-0.12.3_linux-generic-amd64.tar.xz
 sudo mv wkhtmltox/bin/wkhtmlto* /usr/bin/
@@ -33,15 +34,18 @@ tar -xf webhook-linux-amd64.tar.gz
 sudo mv webhook-linux-amd64/webhook /usr/local/bin
 rm -rf webhook-linux-amd64*
 
-
+#cloning the project by git.
 git clone -q https://$GIT_ACCESS_NAME:$GIT_ACCESS_TOKEN@gitlab.com/naanal/shipping/shipper
 cd shipper
+#evaluation of app directory.
 APP_DIRECTORY=$(eval pwd)
+#essential directories manipulation.
 mkdir -p bslip email_alert import_export_files invoices invoice_temp invoice_temps mis_reports Money-Transfers netmeds_invoices temp today_slip validation_temp
 cd media
 mkdir -p $(awk '{print $1'} directories.txt)
 cd ..
 chmod -R o+w {bslip/,email_alert/,import_export_files/,invoices/,invoice_temp/,invoice_temps/,media/,mis_reports/,Money-Transfers/,netmeds_invoices/,temp/,today_slip/,validation_temp/}
+#virtual environment creation and requirements installation.
 virtualenv venv --python=python3.6 1>/dev/null
 source venv/bin/activate 
 pip install -r requirements.txt 1>/dev/null 
