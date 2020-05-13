@@ -6,29 +6,24 @@ USER_HOME=$(eval echo "~$USER")
 
 source helpers.env
 
+
+sudo sed -i "s|deb cdrom|#deb cdrom|"g /etc/apt/sources.list
 sudo apt-get -y autoremove 1>/dev/null
 sudo apt-get -y autoclean 1>/dev/null
 sudo apt-get -y update 1>/dev/null
-echo "Please Wait While We Configure our App For You"
-cd $USER_HOME
-git clone -q https://$GIT_ACCESS_NAME:$GIT_ACCESS_TOKEN@gitlab.com/naanal/shipping/shipper
-cd shipper
-APP_DIRECTORY=$(eval pwd)
-mkdir -p bslip email_alert import_export_files invoices invoice_temp invoice_temps mis_reports Money-Transfers netmeds_invoices temp today_slip validation_temp
-cd media
-mkdir -p $(awk '{print $1'} directories.txt)
-cd ..
-chmod -R o+w {bslip/,email_alert/,import_export_files/,invoices/,invoice_temp/,invoice_temps/,media/,mis_reports/,Money-Transfers/,netmeds_invoices/,temp/,today_slip/,validation_temp/} 
-echo "Installing system dependencies..."
-#Adding rabbitmq-server GPG key for installing rabbitmq-server
-echo "deb https://dl.bintray.com/rabbitmq/debian xenial main" | sudo tee 1>/dev/null
-wget -q -O- https://dl.bintray.com/rabbitmq/Keys/rabbitmq-release-signing-key.asc | sudo apt-key add - 1>/dev/null
-#Adding python3.6 PPA repo for installing python3.6
+
+
+#
+echo "deb https://dl.bintray.com/rabbitmq/debian xenial main" | sudo tee >/dev/null 2>&1
+wget -q -O- https://dl.bintray.com/rabbitmq/Keys/rabbitmq-release-signing-key.asc | sudo apt-key add - >/dev/null 2>&1
+#
 sudo add-apt-repository -y ppa:deadsnakes/ppa >/dev/null 2>&1
-#Updating the changes
-sudo apt-get -y update 1>/dev/null
-#installation of system dependencies
+#
+sudo apt-get -y update >/dev/null 2>&1
+#
+wget -q -N https://raw.githubusercontent.com/naanaldevelopers/naanal-app-installation/master/system_packages.txt
 sudo apt-get install -q -y $(awk '{print $1'} system_packages.txt) 1>/dev/null
+#
 wget -q -N https://github.com/wkhtmltopdf/wkhtmltopdf/releases/download/0.12.3/wkhtmltox-0.12.3_linux-generic-amd64.tar.xz 
 tar xf wkhtmltox-0.12.3_linux-generic-amd64.tar.xz
 sudo mv wkhtmltox/bin/wkhtmlto* /usr/bin/
@@ -37,13 +32,21 @@ wget -q -N https://github.com/adnanh/webhook/releases/download/2.6.6/webhook-lin
 tar -xf webhook-linux-amd64.tar.gz
 sudo mv webhook-linux-amd64/webhook /usr/local/bin
 rm -rf webhook-linux-amd64*
-echo "Installation of system dependencies was done."
-echo "Installing shipper app dependencies..."
+
+
+git clone -q https://$GIT_ACCESS_NAME:$GIT_ACCESS_TOKEN@gitlab.com/naanal/shipping/shipper
+cd shipper
+APP_DIRECTORY=$(eval pwd)
+mkdir -p bslip email_alert import_export_files invoices invoice_temp invoice_temps mis_reports Money-Transfers netmeds_invoices temp today_slip validation_temp
+cd media
+mkdir -p $(awk '{print $1'} directories.txt)
+cd ..
+chmod -R o+w {bslip/,email_alert/,import_export_files/,invoices/,invoice_temp/,invoice_temps/,media/,mis_reports/,Money-Transfers/,netmeds_invoices/,temp/,today_slip/,validation_temp/}
 virtualenv venv --python=python3.6 1>/dev/null
 source venv/bin/activate 
 pip install -r requirements.txt 1>/dev/null 
-echo "Installation of shipper app dependencies was done."
 deactivate
+
 
 #Configuration of celery default queue in supervisor
 echo "Configuring celery default queue in supervisor..."
