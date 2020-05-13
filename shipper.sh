@@ -6,7 +6,7 @@ USER_HOME=$(eval echo "~$USER")
 
 source helpers.env
 
-echo -ne '[#........................](5%) Initializing set-up.\r'
+sudo echo -ne '[#........................](5%) Initializing set-up.\r'
 sleep 1
 echo -ne '[##.......................](10%) Initializing set-up.\r'
 sleep 1
