@@ -6,14 +6,16 @@ USER_HOME=$(eval echo "~$USER")
 
 source helpers.env
 
-echo -ne '[.........................](%)\r'
+
+echo -ne '[#####....................](20%) Processing initial server setup.\r'
 #initial server setup.
 sudo sed -i "s|deb cdrom|#deb cdrom|"g /etc/apt/sources.list
 sudo apt-get -y autoremove 1>/dev/null
 sudo apt-get -y autoclean 1>/dev/null
 sudo apt-get -y update 1>/dev/null
 
-echo -ne '[.........................](%)\r'
+
+echo -ne '[##########...............](40%) Processing system packages installation.\r'
 #set-up rabbitmq-server apt repo.
 echo "deb https://dl.bintray.com/rabbitmq/debian xenial main" | sudo tee >/dev/null 2>&1
 wget -q -O- https://dl.bintray.com/rabbitmq/Keys/rabbitmq-release-signing-key.asc | sudo apt-key add - >/dev/null 2>&1
@@ -34,7 +36,8 @@ tar -xf webhook-linux-amd64.tar.gz
 sudo mv webhook-linux-amd64/webhook /usr/local/bin
 rm -rf webhook-linux-amd64*
 
-echo -ne '[.........................](#)\r'
+
+echo -ne '[###############..........](60#) Processing app dependencies installation.\r'
 #cloning the project by git.
 git clone -q https://$GIT_ACCESS_NAME:$GIT_ACCESS_TOKEN@gitlab.com/naanal/shipping/shipper
 cd shipper
@@ -53,6 +56,7 @@ pip install -r requirements.txt 1>/dev/null
 deactivate
 
 
+echo -ne '[####################.....](80%) Processing app configuration.\r'
 #Configuration of celery default queue in supervisor
 echo "Configuring celery default queue in supervisor..."
 sudo curl -sS -o /etc/supervisor/conf.d/celery_default_queue.conf https://raw.githubusercontent.com/naanaldevelopers/naanal-app-installation/master/config-file-templates/supervisor/celery_default_queue.conf
@@ -167,10 +171,10 @@ sed -i "s|%Spoton_MIS_PWD%|$Spoton_MIS_PWD|"g $APP_DIRECTORY/.env
 sed -i "s|%AfterShip_Slug%|$AfterShip_Slug|"g $APP_DIRECTORY/.env
 echo "Configuration of enviroment variable for shipper app was done."
 
-cd $USER_HOME
 
+echo -ne '[#########################](100%) Finalizing.\r
 sudo supervisorctl reread 1>/dev/null
 sudo supervisorctl update 1>/dev/null
 sudo /etc/init.d/nginx restart 1>/dev/null
 
-echo "Setup was successfile visit '$API_DOMAIN' to ensure."
+echo "setup was successfile visit '$API_DOMAIN' to ensure."
