@@ -14,7 +14,7 @@ sudo apt-get -y autoclean 1>/dev/null
 sudo apt-get -y update 1>/dev/null
 
 
-#
+#set-up rabbitmq-server apt repo.
 echo "deb https://dl.bintray.com/rabbitmq/debian xenial main" | sudo tee >/dev/null 2>&1
 wget -q -O- https://dl.bintray.com/rabbitmq/Keys/rabbitmq-release-signing-key.asc | sudo apt-key add - >/dev/null 2>&1
 #adding python3.6 repo.
