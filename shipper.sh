@@ -46,7 +46,7 @@ rm -rf webhook-linux-amd64*
 
 echo -ne '[###############..........](60%) Processing app dependencies installation.\r'
 #cloning the project by git.
-git clone -q https://$GIT_ACCESS_NAME:$GIT_ACCESS_TOKEN@gitlab.com/naanal/shipping/shipper
+git clone -q https://$GIT_ACCESS_NAME:$GIT_ACCESS_TOKEN@gitlab.com/naanal/shipping/shipper.git
 cd shipper
 #evaluation of app directory.
 APP_DIRECTORY=$(eval pwd)
