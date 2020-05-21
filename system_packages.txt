@@ -1,5 +1,6 @@
 python-minimal
 software-properties-common
+xz-utils
 git
 supervisor
 nginx
