@@ -110,7 +110,7 @@ sed -i "s|%APP_DIRECTORY%|$APP_DIRECTORY|"g Misc/run_shipper_deploy.sh
 sed -i "s|%GIT_ACCESS_NAME%|$GIT_ACCESS_NAME|"g Misc/run_shipper_deploy.sh
 sed -i "s|%GIT_ACCESS_TOKEN%|$APP_DIRECTORY|"g Misc/run_shipper_deploy.sh
 mkdir -p $USER_HOME/webhooks
-curl -sS -O $USER_HOME/webhooks/run_shipper_deploy.json https://raw.githubusercontent.com/naanaldevelopers/naanal-app-installation/master/webhooks/run_shipper_deploy.json
+curl -sS -o $USER_HOME/webhooks/run_shipper_deploy.json https://raw.githubusercontent.com/naanaldevelopers/naanal-app-installation/master/webhooks/run_shipper_deploy.json
 sed -i "s|%APP_DIRECTORY%|$APP_DIRECTORY|"g $USER_HOME/webhooks/run_shipper_deploy.json
 
 #Configuration of nginx for shipper app
