@@ -65,28 +65,28 @@ deactivate
 
 echo -ne '[####################.....](80%) Processing app configuration.\r'
 #Configuration of celery default queue in supervisor
-sudo curl -sS -O /etc/supervisor/conf.d/celery_default_queue.conf https://raw.githubusercontent.com/naanaldevelopers/naanal-app-installation/master/config-file-templates/supervisor/celery_default_queue.conf
+sudo curl -sS -o /etc/supervisor/conf.d/celery_default_queue.conf https://raw.githubusercontent.com/naanaldevelopers/naanal-app-installation/master/config-file-templates/supervisor/celery_default_queue.conf
 sudo sed -i "s|%APP_DIRECTORY%|$APP_DIRECTORY|"g /etc/supervisor/conf.d/celery_default_queue.conf
 sudo sed -i "s|%USER%|$USER|"g /etc/supervisor/conf.d/celery_default_queue.conf 
 
 #Configuration of celery priority queue in supervisor
-sudo curl -sS -O /etc/supervisor/conf.d/celery_priority.queue.conf https://raw.githubusercontent.com/naanaldevelopers/naanal-app-installation/master/config-file-templates/supervisor/celery_priority.queue.conf
+sudo curl -sS -o /etc/supervisor/conf.d/celery_priority.queue.conf https://raw.githubusercontent.com/naanaldevelopers/naanal-app-installation/master/config-file-templates/supervisor/celery_priority.queue.conf
 sudo sed -i "s|%APP_DIRECTORY%|$APP_DIRECTORY|"g /etc/supervisor/conf.d/celery_priority.queue.conf
 sudo sed -i "s|%USER%|$USER|"g /etc/supervisor/conf.d/celery_priority.queue.conf
 sudo mkdir -p /var/log/celery
 sudo chown -R $USER /var/log/celery
 
 #Configuration of celery beat in supervisor
-sudo curl -sS -O /etc/supervisor/conf.d/celery_beat.conf https://raw.githubusercontent.com/naanaldevelopers/naanal-app-installation/master/config-file-templates/supervisor/celery_beat.conf
+sudo curl -sS -o /etc/supervisor/conf.d/celery_beat.conf https://raw.githubusercontent.com/naanaldevelopers/naanal-app-installation/master/config-file-templates/supervisor/celery_beat.conf
 sudo sed -i "s|%APP_DIRECTORY%|$APP_DIRECTORY|"g /etc/supervisor/conf.d/celery_beat.conf
 sudo sed -i "s|%USER%|$USER|"g /etc/supervisor/conf.d/celery_beat.conf
 
 #Configuration of scrapyd in supervisor
-sudo curl -sS -O /etc/supervisor/conf.d/shipper_scraping.conf https://raw.githubusercontent.com/naanaldevelopers/naanal-app-installation/master/config-file-templates/supervisor/shipper_scraping.conf
+sudo curl -sS -o /etc/supervisor/conf.d/shipper_scraping.conf https://raw.githubusercontent.com/naanaldevelopers/naanal-app-installation/master/config-file-templates/supervisor/shipper_scraping.conf
 sudo sed -i "s|%APP_DIRECTORY%|$APP_DIRECTORY|"g /etc/supervisor/conf.d/shipper_scraping.conf
 
 #Configuration of gunicorn for shipper in shell script
-curl -sS -O $APP_DIRECTORY/Misc/run-shipper.sh https://raw.githubusercontent.com/naanaldevelopers/naanal-app-installation/master/config-script-templates/gunicorn/run-shipper.sh
+curl -sS -o $APP_DIRECTORY/Misc/run-shipper.sh https://raw.githubusercontent.com/naanaldevelopers/naanal-app-installation/master/config-script-templates/gunicorn/run-shipper.sh
 sed -i "s|%APP_DIRECTORY%|$APP_DIRECTORY|"g $APP_DIRECTORY/Misc/run-shipper.sh
 sed -i "s|%USER%|$USER|"g $APP_DIRECTORY/Misc/run-shipper.sh
 sed -i "s|%USER_GROUP%|$USER_GROUP|"g $APP_DIRECTORY/Misc/run-shipper.sh
@@ -95,16 +95,16 @@ sudo mkdir -p /var/log/shipper
 sudo chown -R $USER /var/log/shipper
 
 #Configuration of shipper app in supervisor
-sudo curl -sS -O /etc/supervisor/conf.d/shipper.conf https://raw.githubusercontent.com/naanaldevelopers/naanal-app-installation/master/config-file-templates/supervisor/shipper.conf
+sudo curl -sS -o /etc/supervisor/conf.d/shipper.conf https://raw.githubusercontent.com/naanaldevelopers/naanal-app-installation/master/config-file-templates/supervisor/shipper.conf
 sudo sed -i "s|%APP_DIRECTORY%|$APP_DIRECTORY|"g /etc/supervisor/conf.d/shipper.conf
 sudo sed -i "s|%USER%|$USER|"g /etc/supervisor/conf.d/shipper.conf
 
 #Configuration of webhook
-sudo curl -sS -O /etc/supervisor/conf.d/webhooks.conf https://raw.githubusercontent.com/naanaldevelopers/naanal-app-installation/master/config-file-templates/supervisor/webhooks.conf
+sudo curl -sS -o /etc/supervisor/conf.d/webhooks.conf https://raw.githubusercontent.com/naanaldevelopers/naanal-app-installation/master/config-file-templates/supervisor/webhooks.conf
 sudo sed -i "s|%USER_HOME%|$USER_HOME|"g /etc/supervisor/conf.d/webhooks.conf
 
 #Incremental deployment
-curl -sS -O Misc/run_shipper_deploy.sh https://raw.githubusercontent.com/naanaldevelopers/naanal-app-installation/master/config-script-templates/feature-deployment/run_shipper_deploy.sh
+curl -sS -o Misc/run_shipper_deploy.sh https://raw.githubusercontent.com/naanaldevelopers/naanal-app-installation/master/config-script-templates/feature-deployment/run_shipper_deploy.sh
 chmod u+x Misc/run_shipper_deploy.sh
 sed -i "s|%APP_DIRECTORY%|$APP_DIRECTORY|"g Misc/run_shipper_deploy.sh
 sed -i "s|%GIT_ACCESS_NAME%|$GIT_ACCESS_NAME|"g Misc/run_shipper_deploy.sh
@@ -114,7 +114,7 @@ curl -sS -O $USER_HOME/webhooks/run_shipper_deploy.json https://raw.githubuserco
 sed -i "s|%APP_DIRECTORY%|$APP_DIRECTORY|"g $USER_HOME/webhooks/run_shipper_deploy.json
 
 #Configuration of nginx for shipper app
-sudo curl -sS -O /etc/nginx/sites-available/shipper.conf https://raw.githubusercontent.com/naanaldevelopers/naanal-app-installation/master/config-file-templates/nginx/shipper.conf
+sudo curl -sS -o /etc/nginx/sites-available/shipper.conf https://raw.githubusercontent.com/naanaldevelopers/naanal-app-installation/master/config-file-templates/nginx/shipper.conf
 sudo sed -i "s|%APP_DIRECTORY%|$APP_DIRECTORY|"g /etc/nginx/sites-available/shipper.conf
 sudo sed -i "s|%API_DOMAIN%|$API_DOMAIN|"g /etc/nginx/sites-available/shipper.conf
 sudo ln -s /etc/nginx/sites-available/shipper.conf /etc/nginx/sites-enabled/shipper.conf
