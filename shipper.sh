@@ -6,13 +6,13 @@ USER_HOME=$(eval echo "~$USER")
 
 source helpers.env
 
-sudo echo -ne '[#........................](5%) Initializing set-up.\r'
+sudo echo -ne '[#........................](5%) Initializing set-up.     \r'
 sleep 1
-echo -ne '[##.......................](10%) Initializing set-up.\r'
+echo -ne '[##.......................](10%) Initializing set-up.     \r'
 sleep 1
-echo -ne '[###......................](15%) Initializing set-up.\r'
+echo -ne '[###......................](15%) Initializing set-up.     \r'
 sleep 1
-echo -ne '[#####....................](20%) Initial server set-up.\r'
+echo -ne '[#####....................](20%) Initial server set-up.     \r'
 #initial server setup.
 sudo sed -i "s|deb cdrom|#deb cdrom|"g /etc/apt/sources.list
 sudo apt-get -y autoremove 1>/dev/null
@@ -20,7 +20,7 @@ sudo apt-get -y autoclean 1>/dev/null
 sudo apt-get -y update 1>/dev/null
 
 
-echo -ne '[##########...............](40%) Processing system packages installation.\r'
+echo -ne '[##########...............](40%) Processing system packages installation.     \r'
 #python minimal installation.
 sudo apt-get install python-minimal software-properties-common >/dev/null 2>&1
 #set-up rabbitmq-server apt repo.
@@ -45,7 +45,7 @@ sudo mv webhook-linux-amd64/webhook /usr/local/bin
 rm -rf webhook-linux-amd64*
 
 
-echo -ne '[###############..........](60%) Processing app dependencies installation.\r'
+echo -ne '[###############..........](60%) Processing app dependencies installation.     \r'
 #cloning the project by git.
 git clone -q https://$GIT_ACCESS_NAME:$GIT_ACCESS_TOKEN@gitlab.com/naanal/shipping/shipper.git
 cd shipper
@@ -64,7 +64,7 @@ pip install -r requirements.txt >/dev/null 2>&1
 deactivate
 
 
-echo -ne '[####################.....](80%) Processing app configuration.\r'
+echo -ne '[####################.....](80%) Processing app configuration.     \r'
 #Configuration of celery default queue in supervisor
 sudo curl -sS -o /etc/supervisor/conf.d/celery_default_queue.conf https://raw.githubusercontent.com/naanaldevelopers/naanal-app-installation/master/config-file-templates/supervisor/celery_default_queue.conf
 sudo sed -i "s|%APP_DIRECTORY%|$APP_DIRECTORY|"g /etc/supervisor/conf.d/celery_default_queue.conf
@@ -162,7 +162,7 @@ sed -i "s|%Spoton_MIS_PWD%|$Spoton_MIS_PWD|"g $APP_DIRECTORY/.env
 sed -i "s|%AfterShip_Slug%|$AfterShip_Slug|"g $APP_DIRECTORY/.env
 
 
-echo -ne '[#########################](100%) Finalizing set-up.\r'
+echo -ne '[#########################](100%) Finalizing set-up.     \r'
 sudo supervisorctl reread 1>/dev/null
 sudo supervisorctl update 1>/dev/null
 sudo /etc/init.d/nginx restart 1>/dev/null
