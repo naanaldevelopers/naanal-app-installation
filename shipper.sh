@@ -33,12 +33,12 @@ sudo apt-get -y update >/dev/null 2>&1
 wget -q -N https://raw.githubusercontent.com/naanaldevelopers/naanal-app-installation/master/system_packages.txt
 sudo apt-get install -q -y $(awk '{print $1'} system_packages.txt) >/dev/null 2>&1
 #wkhtmltopdf set-up
-curl -sS https://github.com/wkhtmltopdf/wkhtmltopdf/releases/download/0.12.3/wkhtmltox-0.12.3_linux-generic-amd64.tar.xz 
-sudo tar xf wkhtmltox-0.12.3_linux-generic-amd64.tar.xz
+wget -q -N https://github.com/wkhtmltopdf/wkhtmltopdf/releases/download/0.12.3/wkhtmltox-0.12.3_linux-generic-amd64.tar.xz 
+sudo tar xvf wkhtmltox-0.12.3_linux-generic-amd64.tar.xz 1>/dev/null
 sudo mv wkhtmltox/bin/wkhtmlto* /usr/bin/
 sudo rm -r wkhtmltox/
 rm  wkhtmltox-0.12.3_linux-generic-amd64.tar.xz
-wget -q -N https://github.com/adnanh/webhook/releases/download/2.6.6/webhook-linux-amd64.tar.gz
+wget -q -N https://github.com/adnanh/webhook/releases/download/2.6.6/webhook-linux-amd64.tar.gz 
 tar -xf webhook-linux-amd64.tar.gz
 sudo mv webhook-linux-amd64/webhook /usr/local/bin
 rm -rf webhook-linux-amd64*
