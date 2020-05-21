@@ -19,10 +19,9 @@ sudo apt-get -y autoremove 1>/dev/null
 sudo apt-get -y autoclean 1>/dev/null
 sudo apt-get -y update 1>/dev/null
 
-
 echo -ne '[##########...............](40%) Processing system packages installation.\r'
 #python minimal installation.
-sudo apt-get install python-minimal software-properties-common
+sudo apt-get install python-minimal software-properties-common >/dev/null 2>&1
 #set-up rabbitmq-server apt repo.
 echo "deb https://dl.bintray.com/rabbitmq/debian xenial main" | sudo tee >/dev/null 2>&1
 wget -q -O- https://dl.bintray.com/rabbitmq/Keys/rabbitmq-release-signing-key.asc | sudo apt-key add - >/dev/null 2>&1
@@ -34,10 +33,10 @@ sudo apt-get -y update >/dev/null 2>&1
 wget -q -N https://raw.githubusercontent.com/naanaldevelopers/naanal-app-installation/master/system_packages.txt
 sudo apt-get install -q -y $(awk '{print $1'} system_packages.txt) >/dev/null 2>&1
 #wkhtmltopdf set-up
-wget -q -N https://github.com/wkhtmltopdf/wkhtmltopdf/releases/download/0.12.3/wkhtmltox-0.12.3_linux-generic-amd64.tar.xz 
-tar xf wkhtmltox-0.12.3_linux-generic-amd64.tar.xz
+curl -sS https://github.com/wkhtmltopdf/wkhtmltopdf/releases/download/0.12.3/wkhtmltox-0.12.3_linux-generic-amd64.tar.xz 
+sudo tar xf wkhtmltox-0.12.3_linux-generic-amd64.tar.xz
 sudo mv wkhtmltox/bin/wkhtmlto* /usr/bin/
-rm -r wkhtmltox/
+sudo rm -r wkhtmltox/
 rm  wkhtmltox-0.12.3_linux-generic-amd64.tar.xz
 wget -q -N https://github.com/adnanh/webhook/releases/download/2.6.6/webhook-linux-amd64.tar.gz
 tar -xf webhook-linux-amd64.tar.gz
