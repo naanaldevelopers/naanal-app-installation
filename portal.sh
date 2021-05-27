@@ -16,7 +16,7 @@ APP_DIRECTORY=$(eval pwd)
 
 echo "Installing system dependencies..."
 #Installation of needed system packages for an app.
-curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash - 1>/dev/null
+curl -sL https://deb.nodesource.com/setup_13.x | sudo -E bash - 1>/dev/null
 curl -sL https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add - 1>/dev/null
 echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list 1>/dev/null
 sudo apt-get update 1>/dev/null
