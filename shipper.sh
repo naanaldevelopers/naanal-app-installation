@@ -22,7 +22,7 @@ sudo apt-get -y update 1>/dev/null
 
 echo -ne '[##########...............](40%) Processing system packages installation.     \r'
 #python minimal installation.
-sudo apt-get install python-minimal software-properties-common >/dev/null 2>&1
+sudo apt-get install -y python-minimal software-properties-common >/dev/null 2>&1
 #set-up rabbitmq-server apt repo.
 echo "deb https://dl.bintray.com/rabbitmq/debian xenial main" | sudo tee >/dev/null 2>&1
 wget -q -O- https://dl.bintray.com/rabbitmq/Keys/rabbitmq-release-signing-key.asc | sudo apt-key add - >/dev/null 2>&1
