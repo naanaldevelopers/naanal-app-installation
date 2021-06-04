@@ -22,17 +22,17 @@ sudo apt-get -y update 1>/dev/null
 
 echo -ne '[##########...............](40%) Processing system packages installation.     \r'
 #python minimal installation.
-sudo apt-get install -y python-minimal software-properties-common >/dev/null 2>&1
+sudo apt-get install -y python-minimal software-properties-common >/dev/null
 #set-up rabbitmq-server apt repo.
-echo "deb https://dl.bintray.com/rabbitmq/debian xenial main" | sudo tee >/dev/null 2>&1
+echo "deb https://dl.bintray.com/rabbitmq/debian xenial main" | sudo tee >/dev/null
 wget -q -O- https://dl.bintray.com/rabbitmq/Keys/rabbitmq-release-signing-key.asc | sudo apt-key add - >/dev/null 2>&1
 #adding python3.6 repo.
-sudo add-apt-repository -y ppa:deadsnakes/ppa >/dev/null 2>&1
+sudo add-apt-repository -y ppa:deadsnakes/ppa >/dev/null
 #updating the system.
-sudo apt-get -y update >/dev/null 2>&1
+sudo apt-get -y update >/dev/null
 #installing system packages.
 wget -q -N https://raw.githubusercontent.com/naanaldevelopers/naanal-app-installation/master/system_packages.txt
-sudo apt-get install -q -y $(awk '{print $1'} system_packages.txt) >/dev/null 2>&1
+sudo apt-get install -q -y $(awk '{print $1'} system_packages.txt) >/dev/null
 #wkhtmltopdf set-up
 wget -q -N https://github.com/wkhtmltopdf/wkhtmltopdf/releases/download/0.12.3/wkhtmltox-0.12.3_linux-generic-amd64.tar.xz 
 sudo tar xvf wkhtmltox-0.12.3_linux-generic-amd64.tar.xz 1>/dev/null
@@ -60,7 +60,7 @@ chmod -R o+w {bslip/,email_alert/,import_export_files/,invoices/,invoice_temp/,i
 #virtual environment creation and requirements installation.
 virtualenv venv --python=python3.6 1>/dev/null
 source venv/bin/activate 
-pip install -r requirements.txt >/dev/null 2>&1
+pip install -r requirements.txt >/dev/null
 deactivate
 
 
