@@ -160,7 +160,23 @@ sed -i "s|%Open_Bank_Static_Token%|$Open_Bank_Static_Token|"g $APP_DIRECTORY/.en
 sed -i "s|%Open_Bank_Domain%|$Open_Bank_Domain|"g $APP_DIRECTORY/.env
 sed -i "s|%Spoton_MIS_PWD%|$Spoton_MIS_PWD|"g $APP_DIRECTORY/.env
 sed -i "s|%AfterShip_Slug%|$AfterShip_Slug|"g $APP_DIRECTORY/.env
-
+sed -i "s|%qb_api_url%|$qb_api_url|"g $APP_DIRECTORY/.env
+sed -i "s|%company_id%|$company_id|"g $APP_DIRECTORY/.env
+sed -i "s|%client_id%|$client_id|"g $APP_DIRECTORY/.env
+sed -i "s|%secret_id%|$secret_id|"g $APP_DIRECTORY/.env
+sed -i "s|%quick_environment%|$quick_environment|"g $APP_DIRECTORY/.env
+sed -i "s|%redirect_url%|$redirect_url|"g $APP_DIRECTORY/.env
+sed -i "s|%CURRENT_TDS%|$CURRENT_TDS|"g $APP_DIRECTORY/.env
+sed -i "s|%TMS_COMPANY_NAME%|$TMS_COMPANY_NAME|"g $APP_DIRECTORY/.env
+sed -i "s|%gsheet_user%|$gsheet_user|"g $APP_DIRECTORY/.env
+sed -i "s|%gsheet_user_password%|$gsheet_user_password|"g $APP_DIRECTORY/.env
+sed -i "s|%COURIER_SHIFT_TAT%|$COURIER_SHIFT_TAT|"g $APP_DIRECTORY/.env
+sed -i "s|%SPOTON_API_BOOKING%|$SPOTON_API_BOOKING|"g $APP_DIRECTORY/.env
+sed -i "s|%COURIER_API_BOOKING_AVAIL%|$COURIER_API_BOOKING_AVAIL|"g $APP_DIRECTORY/.env
+sed -i "s|%COURIER_API_BOOKING_FILES%|$COURIER_API_BOOKING_FILES|"g $APP_DIRECTORY/.env
+sed -i "s|%ORDER_CLAIMS%|$ORDER_CLAIMS|"g $APP_DIRECTORY/.env
+sed -i "s|%COMMON_FILES%|$COMMON_FILES|"g $APP_DIRECTORY/.env
+sed -i "s|%ADD_DIFFDAY_CHECKPOINTS%|$ADD_DIFFDAY_CHECKPOINTS|"g $APP_DIRECTORY/.env
 
 echo -ne '[#########################](100%) Finalizing set-up.     \r'
 sudo supervisorctl reread 1>/dev/null
