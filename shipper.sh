@@ -24,8 +24,12 @@ echo -ne '[##########...............](40%) Processing system packages installati
 #python minimal installation.
 sudo apt-get install -y python-minimal software-properties-common >/dev/null
 #set-up rabbitmq-server apt repo.
+wget -O- https://dl.bintray.com/rabbitmq/Keys/rabbitmq-release-signing-key.asc | sudo apt-key add - >/dev/null
+wget -O- https://www.rabbitmq.com/rabbitmq-release-signing-key.asc | sudo apt-key add - >/dev/null
+wget -q -O- https://dl.bintray.com/rabbitmq/Keys/rabbitmq-release-signing-key.asc | sudo apt-key add - >/dev/null
 echo "deb https://dl.bintray.com/rabbitmq/debian xenial main" | sudo tee >/dev/null
-wget -q -O- https://dl.bintray.com/rabbitmq/Keys/rabbitmq-release-signing-key.asc | sudo apt-key add - >/dev/null 2>&1
+echo "deb https://dl.bintray.com/rabbitmq-erlang/debian bionic erlang-22.x" | sudo tee /etc/apt/sources.list.d/rabbitmq.list >/dev/null
+echo "deb https://dl.bintray.com/rabbitmq-erlang/debian focal erlang-22.x" | sudo tee /etc/apt/sources.list.d/rabbitmq.list >/dev/null
 #adding python3.6 repo.
 sudo add-apt-repository -y ppa:deadsnakes/ppa >/dev/null
 #updating the system.
