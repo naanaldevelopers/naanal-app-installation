@@ -23,6 +23,7 @@ sudo apt-get update 1>/dev/null
 sudo apt-get install -y nodejs 1>/dev/null
 sudo apt-get install -y yarn 1>/dev/null
 sudo npm install -g firebase-tools > /dev/null 2>&1
+npm install netlify-cli -g > /dev/null 2>&1
 echo "Installation of system dependencies was done."
 
 echo "Installing app dependencies..."
@@ -43,6 +44,14 @@ sed -i "s|%GIT_ACCESS_TOKEN%|$GIT_ACCESS_TOKEN|"g Misc/portal_firebase_deploy.sh
 mkdir -p $USER_HOME/webhooks
 curl -sS -o $USER_HOME/webhooks/portal_firebase_deploy.json https://raw.githubusercontent.com/naanaldevelopers/naanal-app-installation/master/webhooks/portal_firebase_deploy.json
 sed -i "s|%APP_DIRECTORY%|$APP_DIRECTORY|"g $USER_HOME/webhooks/portal_firebase_deploy.json
+
+#Netlify Deploy
+# Create Netlify account before this. (Note: Recommended to use gui setup.)
+cd $APP_DIRECTORY
+netlify login
+#netlify init ask you some inputs(build-command='yarn run buil and' and public directory='dist')
+#it also give you ssh key you need to add it in yout git account and then webhook in repository.)
+netlify init
 
 #Building an app for production
 echo "Building an app for production..."
